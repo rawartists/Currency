@@ -1,5 +1,7 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
+use Pyro\Module\Streams_core\Core\Field\AbstractField;
+
 /**
  * PyroStreams US State Field Type
  *
@@ -9,7 +11,7 @@
  * @license		http://parse19.com/pyrostreams/license
  * @link		http://parse19.com/pyrostreams
  */
-class Field_currency_code
+class Field_currency_code extends AbstractField
 {
 	public $field_type_slug			= 'currency_code';
 	
@@ -205,8 +207,8 @@ class Field_currency_code
 	 * @param	array
 	 * @return	string
 	 */
-	public function form_output($data, $entry_id, $field)
+	public function form_output()
 	{
-		return form_dropdown($data['form_slug'], $this->currency_codes, $data['value'], 'id="'.$data['form_slug'].'"');
+		return form_dropdown($this->form_slug, $this->currency_codes, $this->value, 'id="'.$this->form_slug.'"');
 	}
 }
