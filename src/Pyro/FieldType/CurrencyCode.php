@@ -11,19 +11,22 @@ use Pyro\Module\Streams_core\Core\Field\AbstractField;
  * @license		http://parse19.com/pyrostreams/license
  * @link		http://parse19.com/pyrostreams
  */
-class Field_currency_code extends AbstractField
+class CurrencyCode extends AbstractField
 {
-	public $field_type_slug			= 'currency_code';
+	public $field_type_slug = 'currency_code';
 	
-	public $db_col_type				= 'varchar';
+	public $db_col_type = 'varchar';
 
-	public $version					= '1.2';
+	public $version = '1.2';
 
-	public $author					= array('name'=>'AI Web Systems, Inc.', 'url'=>'http://aiwebsystems.com');
+	public $author = array(
+		'name'=>'AI Web Systems, Inc.',
+		'url'=>'http://aiwebsystems.com'
+		);
 
-	public $custom_parameters		= array('default_value');
-
-	// --------------------------------------------------------------------------
+	public $custom_parameters = array(
+		'default_value'
+		);
 
 	/**
 	 * All of them?
@@ -198,8 +201,6 @@ class Field_currency_code extends AbstractField
 		'zwd' => 'Zimbabwe Dollar',
 	);
 
-	// --------------------------------------------------------------------------
-
 	/**
 	 * Output form input
 	 *
@@ -207,7 +208,7 @@ class Field_currency_code extends AbstractField
 	 * @param	array
 	 * @return	string
 	 */
-	public function form_output()
+	public function formOutput()
 	{
 		return form_dropdown($this->form_slug, $this->currency_codes, $this->value, 'id="'.$this->form_slug.'"');
 	}
