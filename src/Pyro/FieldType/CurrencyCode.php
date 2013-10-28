@@ -208,7 +208,7 @@ class CurrencyCode extends AbstractField
 	 * @param	array
 	 * @return	string
 	 */
-	public function formOutput()
+	public function formInput()
 	{
 		return form_dropdown($this->form_slug, $this->currency_codes, $this->value, 'id="'.$this->form_slug.'"');
 	}
