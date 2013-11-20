@@ -183,7 +183,10 @@ class CurrencyCode extends AbstractFieldType
 		'tzs' => 'Tanzania Shilling',
 		'uah' => 'Ukraine Hryvna',
 		'ugx' => 'Uganda Shilling',
-		'usd' => 'United States Dollar',
+		'usd' => array(
+			'sign' => '$',
+			'title' => 'United States Dollar',
+			),
 		'uyu' => 'Uruguay Peso',
 		'uzs' => 'Uzbekistan Som',
 		'vef' => 'Venezuela Bolivar Fuerte',
@@ -210,6 +213,47 @@ class CurrencyCode extends AbstractFieldType
 	 */
 	public function formInput()
 	{
-		return form_dropdown($this->form_slug, $this->currency_codes, $this->value, 'id="'.$this->form_slug.'"');
+		return form_dropdown($this->form_slug, $this->getCurrencyCodeOptions(), $this->value, 'id="'.$this->form_slug.'"');
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	// --------------------------	  UTILITIES	  ------------------------------ //
+	///////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Build options for a dropdown select
+	 * @return array
+	 */
+	protected function getCurrencyCodeOptions()
+	{
+		// Get started
+		$options = array();
+
+		// Build the options
+		foreach ($this->currency_codes as $abr => $currency_code)
+			if (isset($currency_code['title']))
+				$options[$abr] = $currency_code['title'];
+			else
+				$options[$abr] = $currency_code;
+
+			// Boomskie
+		return $options;
+	}
+
+	/**
+	 * Get the sign for a currency code $abr
+	 * @param  mixed $value
+	 * @return string
+	 */
+	public function getCurrencyCodeSign($value = false)
+	{
+		// Determine a value
+		if (! $value)
+			$value = $this->value;
+
+		if (isset($this->currency_codes[$value]['sign']))
+			return $this->currency_codes[$value]['sign'];
+		else
+			return false;
 	}
 }
