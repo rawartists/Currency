@@ -15,7 +15,7 @@ class CurrencyCode extends AbstractFieldType
 {
 	public $field_type_slug = 'currency_code';
 	
-	public $db_col_type = 'varchar';
+	public $db_col_type = 'string';
 
 	public $version = '1.2';
 
