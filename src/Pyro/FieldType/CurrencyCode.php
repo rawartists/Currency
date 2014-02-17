@@ -3,205 +3,238 @@
 use Pyro\Module\Streams\FieldType\FieldTypeAbstract;
 
 /**
- * PyroStreams US State Field Type
+ * FieldType Class CurrencyCode
  *
- * @package        PyroCMS\Core\Modules\Streams Core\Field Types
- * @author        Parse19
- * @license        http://parse19.com/pyrostreams/docs/license
- * @license        http://parse19.com/pyrostreams/license
- * @link        http://parse19.com/pyrostreams
+ * @package Pyro\FieldType
+ * @author  AI Web Systems, Inc. - Ryan Thompson
  */
 class CurrencyCode extends FieldTypeAbstract
 {
+    /**
+     * Field type slug
+     *
+     * @var string
+     */
     public $field_type_slug = 'currency_code';
-    
-    public $db_col_type = 'string';
-
-    public $version = '1.2';
-
-    public $author = array(
-        'name'=>'AI Web Systems, Inc.',
-        'url'=>'http://aiwebsystems.com'
-        );
-
-    public $custom_parameters = array(
-        'default_value'
-        );
 
     /**
-     * All of them?
+     * Database column type
      *
-     * @access     public
-     * @var     array
+     * @var string
      */
-    public $currency_codes = array(
-        'aed' => 'United Arab Emirates Dirham',
-        'afn' => 'Afghanistan Afghani',
-        'all' => 'Albania Lek',
-        'amd' => 'Armenia Dram',
-        'ang' => 'Netherlands Antilles Guilder',
-        'aoa' => 'Angola Kwanza',
-        'ars' => 'Argentina Peso',
-        'aud' => 'Australia Dollar',
-        'awg' => 'Aruba Guilder',
-        'azn' => 'Azerbaijan New Manat',
-        'bam' => 'Bosnia and Herzegovina Convertible Marka',
-        'bbd' => 'Barbados Dollar',
-        'bdt' => 'Bangladesh Taka',
-        'bgn' => 'Bulgaria Lev',
-        'bhd' => 'Bahrain Dinar',
-        'bif' => 'Burundi Franc',
-        'bmd' => 'Bermuda Dollar',
-        'bnd' => 'Brunei Darussalam Dollar',
-        'bob' => 'Bolivia Boliviano',
-        'brl' => 'Brazil Real',
-        'bsd' => 'Bahamas Dollar',
-        'btn' => 'Bhutan Ngultrum',
-        'bwp' => 'Botswana Pula',
-        'byr' => 'Belarus Ruble',
-        'bzd' => 'Belize Dollar',
-        'cad' => 'Canada Dollar',
-        'cdf' => 'Congo/Kinshasa Franc',
-        'chf' => 'Switzerland Franc',
-        'clp' => 'Chile Peso',
-        'cny' => 'China Yuan Renminbi',
-        'cop' => 'Colombia Peso',
-        'crc' => 'Costa Rica Colon',
-        'cuc' => 'Cuba Convertible Peso',
-        'cup' => 'Cuba Peso',
-        'cve' => 'Cape Verde Escudo',
-        'czk' => 'Czech Republic Koruna',
-        'djf' => 'Djibouti Franc',
-        'dkk' => 'Denmark Krone',
-        'dop' => 'Dominican Republic Peso',
-        'dzd' => 'Algeria Dinar',
-        'egp' => 'Egypt Pound',
-        'ern' => 'Eritrea Nakfa',
-        'etb' => 'Ethiopia Birr',
-        'eur' => 'Euro Member Countries',
-        'fjd' => 'Fiji Dollar',
-        'fkp' => 'Falkland Islands (Malvinas) Pound',
-        'gbp' => 'United Kingdom Pound',
-        'gel' => 'Georgia Lari',
-        'ggp' => 'Guernsey Pound',
-        'ghs' => 'Ghana Cedi',
-        'gip' => 'Gibraltar Pound',
-        'gmd' => 'Gambia Dalasi',
-        'gnf' => 'Guinea Franc',
-        'gtq' => 'Guatemala Quetzal',
-        'gyd' => 'Guyana Dollar',
-        'hkd' => 'Hong Kong Dollar',
-        'hnl' => 'Honduras Lempira',
-        'hrk' => 'Croatia Kuna',
-        'htg' => 'Haiti Gourde',
-        'huf' => 'Hungary Forint',
-        'idr' => 'Indonesia Rupiah',
-        'ils' => 'Israel Shekel',
-        'imp' => 'Isle of Man Pound',
-        'inr' => 'India Rupee',
-        'iqd' => 'Iraq Dinar',
-        'irr' => 'Iran Rial',
-        'isk' => 'Iceland Krona',
-        'jep' => 'Jersey Pound',
-        'jmd' => 'Jamaica Dollar',
-        'jod' => 'Jordan Dinar',
-        'jpy' => 'Japan Yen',
-        'kes' => 'Kenya Shilling',
-        'kgs' => 'Kyrgyzstan Som',
-        'khr' => 'Cambodia Riel',
-        'kmf' => 'Comoros Franc',
-        'kpw' => 'Korea (North) Won',
-        'krw' => 'Korea (South) Won',
-        'kwd' => 'Kuwait Dinar',
-        'kyd' => 'Cayman Islands Dollar',
-        'kzt' => 'Kazakhstan Tenge',
-        'lak' => 'Laos Kip',
-        'lbp' => 'Lebanon Pound',
-        'lkr' => 'Sri Lanka Rupee',
-        'lrd' => 'Liberia Dollar',
-        'lsl' => 'Lesotho Loti',
-        'ltl' => 'Lithuania Litas',
-        'lvl' => 'Latvia Lat',
-        'lyd' => 'Libya Dinar',
-        'mad' => 'Morocco Dirham',
-        'mdl' => 'Moldova Leu',
-        'mga' => 'Madagascar Ariary',
-        'mkd' => 'Macedonia Denar',
-        'mmk' => 'Myanmar (Burma) Kyat',
-        'mnt' => 'Mongolia Tughrik',
-        'mop' => 'Macau Pataca',
-        'mro' => 'Mauritania Ouguiya',
-        'mur' => 'Mauritius Rupee',
-        'mvr' => 'Maldives (Maldive Islands) Rufiyaa',
-        'mwk' => 'Malawi Kwacha',
-        'mxn' => 'Mexico Peso',
-        'myr' => 'Malaysia Ringgit',
-        'mzn' => 'Mozambique Metical',
-        'nad' => 'Namibia Dollar',
-        'ngn' => 'Nigeria Naira',
-        'nio' => 'Nicaragua Cordoba',
-        'nok' => 'Norway Krone',
-        'npr' => 'Nepal Rupee',
-        'nzd' => 'New Zealand Dollar',
-        'omr' => 'Oman Rial',
-        'pab' => 'Panama Balboa',
-        'pen' => 'Peru Nuevo Sol',
-        'pgk' => 'Papua New Guinea Kina',
-        'php' => 'Philippines Peso',
-        'pkr' => 'Pakistan Rupee',
-        'pln' => 'Poland Zloty',
-        'pyg' => 'Paraguay Guarani',
-        'qar' => 'Qatar Riyal',
-        'ron' => 'Romania New Leu',
-        'rsd' => 'Serbia Dinar',
-        'rub' => 'Russia Ruble',
-        'rwf' => 'Rwanda Franc',
-        'sar' => 'Saudi Arabia Riyal',
-        'sbd' => 'Solomon Islands Dollar',
-        'scr' => 'Seychelles Rupee',
-        'sdg' => 'Sudan Pound',
-        'sek' => 'Sweden Krona',
-        'sgd' => 'Singapore Dollar',
-        'shp' => 'Saint Helena Pound',
-        'sll' => 'Sierra Leone Leone',
-        'sos' => 'Somalia Shilling',
-        'spl' => 'Seborga Luigino',
-        'srd' => 'Suriname Dollar',
-        'std' => 'São Tomé and Príncipe Dobra',
-        'svc' => 'El Salvador Colon',
-        'syp' => 'Syria Pound',
-        'szl' => 'Swaziland Lilangeni',
-        'thb' => 'Thailand Baht',
-        'tjs' => 'Tajikistan Somoni',
-        'tmt' => 'Turkmenistan Manat',
-        'tnd' => 'Tunisia Dinar',
-        'top' => 'Tonga Pa\'anga',
-        'try' => 'Turkey Lira',
-        'ttd' => 'Trinidad and Tobago Dollar',
-        'tvd' => 'Tuvalu Dollar',
-        'twd' => 'Taiwan New Dollar',
-        'tzs' => 'Tanzania Shilling',
-        'uah' => 'Ukraine Hryvna',
-        'ugx' => 'Uganda Shilling',
-        'usd' => array(
-            'sign' => '$',
+    public $db_col_type = 'string';
+
+    /**
+     * Version
+     *
+     * @var string
+     */
+    public $version = '1.3';
+
+    /**
+     * Author
+     *
+     * @var array
+     */
+    public $author = array(
+        'name' => 'AI Web Systems, Inc.',
+        'url'  => 'http://aiwebsystems.com'
+    );
+
+    /**
+     * Custom parameters
+     *
+     * @var array
+     */
+    public $custom_parameters = array(
+        'default_value'
+    );
+
+    /**
+     * Currency codes
+     *
+     * @var array
+     */
+    public $currencyCodes = array(
+        'AED' => 'United Arab Emirates Dirham',
+        'AFN' => 'Afghanistan Afghani',
+        'ALL' => 'Albania Lek',
+        'AMD' => 'Armenia Dram',
+        'ANG' => 'Netherlands Antilles Guilder',
+        'AOA' => 'Angola Kwanza',
+        'ARS' => 'Argentina Peso',
+        'AUD' => 'Australia Dollar',
+        'AWG' => 'Aruba Guilder',
+        'AZN' => 'Azerbaijan New Manat',
+        'BAM' => 'Bosnia and Herzegovina Convertible Marka',
+        'BBD' => 'Barbados Dollar',
+        'BDT' => 'Bangladesh Taka',
+        'BGN' => 'Bulgaria Lev',
+        'BHD' => 'Bahrain Dinar',
+        'BIF' => 'Burundi Franc',
+        'BMD' => 'Bermuda Dollar',
+        'BND' => 'Brunei Darussalam Dollar',
+        'BOB' => 'Bolivia Boliviano',
+        'BRL' => 'Brazil Real',
+        'BSD' => 'Bahamas Dollar',
+        'BTN' => 'Bhutan Ngultrum',
+        'BWP' => 'Botswana Pula',
+        'BYR' => 'Belarus Ruble',
+        'BZD' => 'Belize Dollar',
+        'CAD' => 'Canada Dollar',
+        'CDF' => 'Congo/Kinshasa Franc',
+        'CHF' => 'Switzerland Franc',
+        'CLP' => 'Chile Peso',
+        'CNY' => 'China Yuan Renminbi',
+        'COP' => 'Colombia Peso',
+        'CRC' => 'Costa Rica Colon',
+        'CUC' => 'Cuba Convertible Peso',
+        'CUP' => 'Cuba Peso',
+        'CVE' => 'Cape Verde Escudo',
+        'CZK' => 'Czech Republic Koruna',
+        'DJF' => 'Djibouti Franc',
+        'DKK' => 'Denmark Krone',
+        'DOP' => 'Dominican Republic Peso',
+        'DZD' => 'Algeria Dinar',
+        'EGP' => 'Egypt Pound',
+        'ERN' => 'Eritrea Nakfa',
+        'ETB' => 'Ethiopia Birr',
+        'EUR' => array(
+            'symbol' => '&#128;',
+            'title'  => 'Euro Member Countries',
+        ),
+        'FJD' => 'Fiji Dollar',
+        'FKP' => 'Falkland Islands (Malvinas) Pound',
+        'GBP' => array(
+            'symbol' => '&#163;',
+            'title'  => 'United Kingdom Pound',
+        ),
+        'GEL' => 'Georgia Lari',
+        'GGP' => 'Guernsey Pound',
+        'GHS' => 'Ghana Cedi',
+        'GIP' => 'Gibraltar Pound',
+        'GMD' => 'Gambia Dalasi',
+        'GNF' => 'Guinea Franc',
+        'GTQ' => 'Guatemala Quetzal',
+        'GYD' => 'Guyana Dollar',
+        'HKD' => 'Hong Kong Dollar',
+        'HNL' => 'Honduras Lempira',
+        'HRK' => 'Croatia Kuna',
+        'HTG' => 'Haiti Gourde',
+        'HUF' => 'Hungary Forint',
+        'IDR' => 'Indonesia Rupiah',
+        'ILS' => 'Israel Shekel',
+        'IMP' => 'Isle of Man Pound',
+        'INR' => 'India Rupee',
+        'IQD' => 'Iraq Dinar',
+        'IRR' => 'Iran Rial',
+        'ISK' => 'Iceland Krona',
+        'JEP' => 'Jersey Pound',
+        'JMD' => 'Jamaica Dollar',
+        'JOD' => 'Jordan Dinar',
+        'JPY' => array(
+            'symbol' => '&#165;',
+            'title'  => 'Japan Yen',
+        ),
+        'KES' => 'Kenya Shilling',
+        'KGS' => 'Kyrgyzstan Som',
+        'KHR' => 'Cambodia Riel',
+        'KMF' => 'Comoros Franc',
+        'KPW' => 'Korea (North) Won',
+        'KRW' => 'Korea (South) Won',
+        'KWD' => 'Kuwait Dinar',
+        'KYD' => 'Cayman Islands Dollar',
+        'KZT' => 'Kazakhstan Tenge',
+        'LAK' => 'Laos Kip',
+        'LBP' => 'Lebanon Pound',
+        'LKR' => 'Sri Lanka Rupee',
+        'LRD' => 'Liberia Dollar',
+        'LSL' => 'Lesotho Loti',
+        'LTL' => 'Lithuania Litas',
+        'LVL' => 'Latvia Lat',
+        'LYD' => 'Libya Dinar',
+        'MAD' => 'Morocco Dirham',
+        'MDL' => 'Moldova Leu',
+        'MGA' => 'Madagascar Ariary',
+        'MKD' => 'Macedonia Denar',
+        'MMK' => 'Myanmar (Burma) Kyat',
+        'MNT' => 'Mongolia Tughrik',
+        'MOP' => 'Macau Pataca',
+        'MRO' => 'Mauritania Ouguiya',
+        'MUR' => 'Mauritius Rupee',
+        'MVR' => 'Maldives (Maldive Islands) Rufiyaa',
+        'MWK' => 'Malawi Kwacha',
+        'MXN' => 'Mexico Peso',
+        'MYR' => 'Malaysia Ringgit',
+        'MZN' => 'Mozambique Metical',
+        'NAD' => 'Namibia Dollar',
+        'NGN' => 'Nigeria Naira',
+        'NIO' => 'Nicaragua Cordoba',
+        'NOK' => 'Norway Krone',
+        'NPR' => 'Nepal Rupee',
+        'NZD' => 'New Zealand Dollar',
+        'OMR' => 'Oman Rial',
+        'PAB' => 'Panama Balboa',
+        'PEN' => 'Peru Nuevo Sol',
+        'PGK' => 'Papua New Guinea Kina',
+        'PHP' => 'Philippines Peso',
+        'PKR' => 'Pakistan Rupee',
+        'PLN' => 'Poland Zloty',
+        'PYG' => 'Paraguay Guarani',
+        'QAR' => 'Qatar Riyal',
+        'RON' => 'Romania New Leu',
+        'RSD' => 'Serbia Dinar',
+        'RUB' => 'Russia Ruble',
+        'RWF' => 'Rwanda Franc',
+        'SAR' => 'Saudi Arabia Riyal',
+        'SBD' => 'Solomon Islands Dollar',
+        'SCR' => 'Seychelles Rupee',
+        'SDG' => 'Sudan Pound',
+        'SEK' => 'Sweden Krona',
+        'SGD' => 'Singapore Dollar',
+        'SHP' => 'Saint Helena Pound',
+        'SLL' => 'Sierra Leone Leone',
+        'SOS' => 'Somalia Shilling',
+        'SPL' => 'Seborga Luigino',
+        'SRD' => 'Suriname Dollar',
+        'STD' => 'São Tomé and Príncipe Dobra',
+        'SVC' => 'El Salvador Colon',
+        'SYP' => 'Syria Pound',
+        'SZL' => 'Swaziland Lilangeni',
+        'THB' => 'Thailand Baht',
+        'TJS' => 'Tajikistan Somoni',
+        'TMT' => 'Turkmenistan Manat',
+        'TND' => 'Tunisia Dinar',
+        'TOP' => 'Tonga Pa\'anga',
+        'TRY' => array(
+            'symbol' => '&#8356;',
+            'title'  => 'Turkey Lira',
+        ),
+        'TTD' => 'Trinidad and Tobago Dollar',
+        'TVD' => 'Tuvalu Dollar',
+        'TWD' => 'Taiwan New Dollar',
+        'TZS' => 'Tanzania Shilling',
+        'UAH' => 'Ukraine Hryvna',
+        'UGX' => 'Uganda Shilling',
+        'USD' => array(
+            'code'  => '&#36;',
             'title' => 'United States Dollar',
-            ),
-        'uyu' => 'Uruguay Peso',
-        'uzs' => 'Uzbekistan Som',
-        'vef' => 'Venezuela Bolivar Fuerte',
-        'vnd' => 'Viet Nam Dong',
-        'vuv' => 'Vanuatu Vatu',
-        'wst' => 'Samoa Tala',
-        'xaf' => 'Communauté Financière Africaine (BEAC) CFA Franc BEAC',
-        'xcd' => 'East Caribbean Dollar',
-        'xdr' => 'International Monetary Fund (IMF) Special Drawing Rights',
-        'xof' => 'Communauté Financière Africaine (BCEAO) Franc',
-        'xpf' => 'Comptoirs Français du Pacifique (CFP) Franc',
-        'yer' => 'Yemen Rial',
-        'zar' => 'South Africa Rand',
-        'zmk' => 'Zambia Kwacha',
-        'zwd' => 'Zimbabwe Dollar',
+        ),
+        'UYU' => 'Uruguay Peso',
+        'UZS' => 'Uzbekistan Som',
+        'VEF' => 'Venezuela Bolivar Fuerte',
+        'VND' => 'Viet Nam Dong',
+        'VUV' => 'Vanuatu Vatu',
+        'WST' => 'Samoa Tala',
+        'XAF' => 'Communauté Financière Africaine (BEAC) CFA Franc BEAC',
+        'XCD' => 'East Caribbean Dollar',
+        'XDR' => 'International Monetary Fund (IMF) Special Drawing Rights',
+        'XOF' => 'Communauté Financière Africaine (BCEAO) Franc',
+        'XPF' => 'Comptoirs Français du Pacifique (CFP) Franc',
+        'YER' => 'Yemen Rial',
+        'ZAR' => 'South Africa Rand',
+        'ZMK' => 'Zambia Kwacha',
+        'ZWD' => 'Zimbabwe Dollar',
     );
 
     /**
@@ -213,47 +246,50 @@ class CurrencyCode extends FieldTypeAbstract
      */
     public function formInput()
     {
-        return form_dropdown($this->form_slug, $this->getCurrencyCodeOptions(), $this->value, 'id="'.$this->form_slug.'"');
+        return form_dropdown(
+            $this->form_slug,
+            $this->getOptions(),
+            $this->value,
+            'id="' . $this->form_slug . '"'
+        );
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // --------------------------      UTILITIES      ------------------------------ //
-    ///////////////////////////////////////////////////////////////////////////////
-
     /**
-     * Build options for a dropdown select
+     * Get options
+     *
      * @return array
      */
-    protected function getCurrencyCodeOptions()
+    protected function getOptions()
     {
-        // Get started
         $options = array();
 
-        // Build the options
-        foreach ($this->currency_codes as $abr => $currency_code)
-            if (isset($currency_code['title']))
-                $options[$abr] = $currency_code['title'];
-            else
-                $options[$abr] = $currency_code;
+        foreach ($this->codes as $code => $params) {
+            if (isset($params['title'])) {
+                $options[$code] = $params['title'];
+            } else {
+                $options[$code] = $params;
+            }
+        }
 
-            // Boomskie
         return $options;
     }
 
     /**
-     * Get the sign for a currency code $abr
+     * Get symbol
+     *
      * @param  mixed $value
      * @return string
      */
-    public function getCurrencyCodeSign($value = false)
+    public function getSymbol($value = null)
     {
-        // Determine a value
-        if (! $value)
+        if (!$value) {
             $value = $this->value;
+        }
 
-        if (isset($this->currency_codes[$value]['sign']))
-            return $this->currency_codes[$value]['sign'];
-        else
-            return false;
+        if (isset($this->codes[$value]['symbol'])) {
+            return $this->currency_codes[$value]['symbol'];
+        }
+
+        return false;
     }
 }
