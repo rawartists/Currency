@@ -51,11 +51,11 @@ class CurrencyCode extends FieldTypeAbstract
     );
 
     /**
-     * Currency codes
+     * Codes
      *
      * @var array
      */
-    public $currencyCodes = array(
+    public $codes = array(
         'AED' => 'United Arab Emirates Dirham',
         'AFN' => 'Afghanistan Afghani',
         'ALL' => 'Albania Lek',
