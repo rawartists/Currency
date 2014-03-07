@@ -51,7 +51,7 @@ class CurrencyCode extends FieldTypeAbstract
     );
 
     /**
-     * Codes
+     * Codes @todo - complete with all titles and Symbols
      *
      * @var array
      */
@@ -217,7 +217,7 @@ class CurrencyCode extends FieldTypeAbstract
         'UAH' => 'Ukraine Hryvna',
         'UGX' => 'Uganda Shilling',
         'USD' => array(
-            'code'  => '&#36;',
+            'symbol'  => '&#36;',
             'title' => 'United States Dollar',
         ),
         'UYU' => 'Uruguay Peso',
@@ -265,9 +265,10 @@ class CurrencyCode extends FieldTypeAbstract
 
         foreach ($this->codes as $code => $params) {
             if (isset($params['title'])) {
-                $options[$code] = $params['title'];
+                $symbol = (array_key_exists('symbol', $params)) ? ' '.$params['symbol'].' - ' : '';
+                $options[$code] = $code.' - '.$symbol.$params['title'];
             } else {
-                $options[$code] = $params;
+                $options[$code] = $code.' - '.$params;
             }
         }
 
