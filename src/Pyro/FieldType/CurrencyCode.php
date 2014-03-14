@@ -283,12 +283,13 @@ class CurrencyCode extends FieldTypeAbstract
      */
     public function getSymbol($value = null)
     {
+
         if (!$value) {
             $value = $this->value;
         }
 
         if (isset($this->codes[$value]['symbol'])) {
-            return $this->currency_codes[$value]['symbol'];
+            return $this->codes[$value]['symbol'];
         }
 
         return false;
