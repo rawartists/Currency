@@ -45,11 +45,11 @@ class Currency extends FieldTypeAbstract
     );
 
     /**
-     * Codes
+     * Currencies
      *
      * @var array
      */
-    public $codes = array(
+    public $currencies = array(
         'AED' => 'United Arab Emirates Dirham',
         'AFN' => 'Afghanistan Afghani',
         'ALL' => 'Albania Lek',
@@ -278,8 +278,8 @@ class Currency extends FieldTypeAbstract
     {
         $options = array();
 
-        foreach ($this->codes as $code => $title) {
-            $options[$code] = $title;
+        foreach ($this->currencies as $code => $title) {
+            $options[$code] = $code.' - '.$title;
         }
 
         return $options;
