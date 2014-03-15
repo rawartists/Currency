@@ -285,7 +285,7 @@ class CurrencyCode extends FieldTypeAbstract
     {
 
         if (!$value) {
-            $value = $this->value;
+            $value = strtoupper($this->value);
         }
 
         if (isset($this->codes[$value]['symbol'])) {
