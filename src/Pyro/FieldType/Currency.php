@@ -292,14 +292,8 @@ class Currency extends FieldTypeAbstract
      */
     public function getSymbol()
     {
-<<<<<<< HEAD:src/Pyro/FieldType/CurrencyCode.php
-
-        if (!$value) {
-            $value = strtoupper($this->value);
-=======
         if (isset($this->symbols[$this->value]) and $symbol = $this->symbols[$this->value]) {
             return $symbol;
->>>>>>> d1d3f38c9453e0a5c22ad5e86de97ddf7db3338b:src/Pyro/FieldType/Currency.php
         }
 
         return null;
