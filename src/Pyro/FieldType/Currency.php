@@ -2,20 +2,14 @@
 
 use Pyro\Module\Streams\FieldType\FieldTypeAbstract;
 
-/**
- * FieldType Class CurrencyCode
- *
- * @package Pyro\FieldType
- * @author  AI Web Systems, Inc. - Ryan Thompson
- */
-class CurrencyCode extends FieldTypeAbstract
+class Currency extends FieldTypeAbstract
 {
     /**
      * Field type slug
      *
      * @var string
      */
-    public $field_type_slug = 'currency_code';
+    public $field_type_slug = 'currency';
 
     /**
      * Database column type
@@ -51,11 +45,11 @@ class CurrencyCode extends FieldTypeAbstract
     );
 
     /**
-     * Codes @todo - complete with all titles and Symbols
+     * Currencies
      *
      * @var array
      */
-    public $codes = array(
+    public $currencies = array(
         'AED' => 'United Arab Emirates Dirham',
         'AFN' => 'Afghanistan Afghani',
         'ALL' => 'Albania Lek',
@@ -99,16 +93,10 @@ class CurrencyCode extends FieldTypeAbstract
         'EGP' => 'Egypt Pound',
         'ERN' => 'Eritrea Nakfa',
         'ETB' => 'Ethiopia Birr',
-        'EUR' => array(
-            'symbol' => '&#128;',
-            'title'  => 'Euro Member Countries',
-        ),
+        'EUR' => 'Euro Member Countries',
         'FJD' => 'Fiji Dollar',
         'FKP' => 'Falkland Islands (Malvinas) Pound',
-        'GBP' => array(
-            'symbol' => '&#163;',
-            'title'  => 'United Kingdom Pound',
-        ),
+        'GBP' => 'United Kingdom Pound',
         'GEL' => 'Georgia Lari',
         'GGP' => 'Guernsey Pound',
         'GHS' => 'Ghana Cedi',
@@ -132,10 +120,7 @@ class CurrencyCode extends FieldTypeAbstract
         'JEP' => 'Jersey Pound',
         'JMD' => 'Jamaica Dollar',
         'JOD' => 'Jordan Dinar',
-        'JPY' => array(
-            'symbol' => '&#165;',
-            'title'  => 'Japan Yen',
-        ),
+        'JPY' => 'Japan Yen',
         'KES' => 'Kenya Shilling',
         'KGS' => 'Kyrgyzstan Som',
         'KHR' => 'Cambodia Riel',
@@ -206,20 +191,14 @@ class CurrencyCode extends FieldTypeAbstract
         'TMT' => 'Turkmenistan Manat',
         'TND' => 'Tunisia Dinar',
         'TOP' => 'Tonga Pa\'anga',
-        'TRY' => array(
-            'symbol' => '&#8356;',
-            'title'  => 'Turkey Lira',
-        ),
+        'TRY' => 'Turkey Lira',
         'TTD' => 'Trinidad and Tobago Dollar',
         'TVD' => 'Tuvalu Dollar',
         'TWD' => 'Taiwan New Dollar',
         'TZS' => 'Tanzania Shilling',
         'UAH' => 'Ukraine Hryvna',
         'UGX' => 'Uganda Shilling',
-        'USD' => array(
-            'symbol'  => '&#36;',
-            'title' => 'United States Dollar',
-        ),
+        'USD' => 'United States Dollar',
         'UYU' => 'Uruguay Peso',
         'UZS' => 'Uzbekistan Som',
         'VEF' => 'Venezuela Bolivar Fuerte',
@@ -238,6 +217,19 @@ class CurrencyCode extends FieldTypeAbstract
     );
 
     /**
+     * Symbols
+     *
+     * @var array
+     */
+    protected $symbols = array(
+        'EUR' => '&#128;',
+        'GBP' => '&#163;',
+        'JPY' => '&#165;',
+        'TRY' => '&#8356;',
+        'USD' => '&#36;',
+    );
+
+    /**
      * Output form input
      *
      * @param    array
@@ -246,12 +238,35 @@ class CurrencyCode extends FieldTypeAbstract
      */
     public function formInput()
     {
-        return form_dropdown(
-            $this->form_slug,
-            $this->getOptions(),
-            $this->value,
-            'id="' . $this->form_slug . '"'
+        return form_dropdown($this->form_slug, $this->getOptions(), $this->value);
+    }
+
+    /**
+     * Plugin output
+     *
+     * @return array|mixed
+     */
+    public function pluginOutput()
+    {
+        return array(
+            'code'   => $this->value,
+            'symbol' => $this->getSymbol(),
         );
+    }
+
+    /**
+     * Data output
+     *
+     * @return array|mixed
+     */
+    public function pluginData()
+    {
+        $return = \StdClass();
+
+        $return->code   = $this->value;
+        $return->symbol = $this->getSymbol();
+
+        return $return;
     }
 
     /**
@@ -263,13 +278,8 @@ class CurrencyCode extends FieldTypeAbstract
     {
         $options = array();
 
-        foreach ($this->codes as $code => $params) {
-            if (isset($params['title'])) {
-                $symbol = (array_key_exists('symbol', $params)) ? ' '.$params['symbol'].' - ' : '';
-                $options[$code] = $code.' - '.$symbol.$params['title'];
-            } else {
-                $options[$code] = $code.' - '.$params;
-            }
+        foreach ($this->currencies as $code => $title) {
+            $options[$code] = $code.' - '.$title;
         }
 
         return $options;
@@ -278,20 +288,34 @@ class CurrencyCode extends FieldTypeAbstract
     /**
      * Get symbol
      *
-     * @param  mixed $value
      * @return string
      */
-    public function getSymbol($value = null)
+    public function getSymbol()
     {
+<<<<<<< HEAD:src/Pyro/FieldType/CurrencyCode.php
 
         if (!$value) {
             $value = strtoupper($this->value);
+=======
+        if (isset($this->symbols[$this->value]) and $symbol = $this->symbols[$this->value]) {
+            return $symbol;
+>>>>>>> d1d3f38c9453e0a5c22ad5e86de97ddf7db3338b:src/Pyro/FieldType/Currency.php
         }
 
-        if (isset($this->codes[$value]['symbol'])) {
-            return $this->codes[$value]['symbol'];
+        return null;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return null
+     */
+    public function getCurrency()
+    {
+        if (isset($this->code[$this->value]) and $currency = $this->code[$this->value]) {
+            return $currency;
         }
 
-        return false;
+        return null;
     }
 }

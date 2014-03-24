@@ -1,2 +1,2 @@
-currency_code
+Currency
 =============
